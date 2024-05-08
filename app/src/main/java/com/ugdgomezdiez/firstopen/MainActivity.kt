@@ -9,6 +9,7 @@ import com.ugdgomezdiez.firstopen.app.serialization.GsonSerialization
 import com.ugdgomezdiez.firstopen.feature.data.FirstOpenDataSource
 import com.ugdgomezdiez.firstopen.feature.data.FirstOpenXmlLocalDataSource
 import com.ugdgomezdiez.firstopen.feature.domain.FirstOpenRepository
+import java.util.Date
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         }
         if(prueba2 != null){
             vistaFive.visibility = View.VISIBLE
-            vistaFiveTime.setText(prueba2.time)
+            val fecha = Date(prueba2.time.toLong())
+            vistaFiveTime.setText(fecha.toString())
             vistaFiveTime.visibility = View.VISIBLE
             }
 
