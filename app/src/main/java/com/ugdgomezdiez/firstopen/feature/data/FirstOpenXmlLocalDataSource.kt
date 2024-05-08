@@ -7,8 +7,7 @@ import android.content.SharedPreferences
 import com.ugdgomezdiez.firstopen.app.serialization.JsonSerialization
 import com.ugdgomezdiez.firstopen.feature.domain.OpenModel
 
-class FirstOpenXmlLocalDataSource(val context: Context,
-    val jsonSerialization: JsonSerialization): FirstOpenLocalDataSource {
+class FirstOpenXmlLocalDataSource(val context: Context): FirstOpenLocalDataSource {
     val sharedPref = context.getSharedPreferences("FirstOpen",MODE_PRIVATE)
     val sharedPref2 = context.getSharedPreferences("FiveOpen", MODE_PRIVATE)
     val execute = 1
@@ -31,16 +30,17 @@ class FirstOpenXmlLocalDataSource(val context: Context,
         sharedPref2.edit().apply {
             putString(
                 open.ejecute.toString(),
-                jsonSerialization.toJson(open, OpenModel::class.java)
+                open.time
             )
         }.apply()
     }
 
     override fun getFiveOpen(): OpenModel? {
         val map = sharedPref2.all as Map<String, String>
+        val list = map.values.toList()
         return if (map.isNotEmpty()){
-            val list = map.values.toList()
-            return jsonSerialization.fromJson(list.last(), OpenModel::class.java)
+            val open = OpenModel(list.size,list.last().toString())
+            open
         }else{
             null
         }
