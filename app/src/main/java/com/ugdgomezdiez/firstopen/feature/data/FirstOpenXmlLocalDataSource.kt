@@ -24,11 +24,11 @@ class FirstOpenXmlLocalDataSource(val context: Context): FirstOpenLocalDataSourc
 
 
     override fun setFiveOpen(number: Int) {
-        sharedPref2.edit().putInt("1",number+1).apply()
+        sharedPref.edit().putInt("2",number+1).apply()
     }
 
     override fun getFiveOpen(): Int {
-        return sharedPref2.getInt("1",0)
+        return sharedPref.getInt("2",0)
     }
 
 }
