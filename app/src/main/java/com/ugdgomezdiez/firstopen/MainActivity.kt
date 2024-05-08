@@ -24,12 +24,15 @@ class MainActivity : AppCompatActivity() {
         val vista = findViewById<TextView>(R.id.primera)
         val vista2 = findViewById<TextView>(R.id.np_primera)
         val vistaFive = findViewById<TextView>(R.id.primera_five)
+        val vistaFiveTime = findViewById<TextView>(R.id.time_primera_five)
         if (prueba == true){
             vista.visibility = View.GONE
             vista2.visibility = View.VISIBLE
         }
         if(prueba2 != null){
             vistaFive.visibility = View.VISIBLE
+            vistaFiveTime.setText(prueba2.time)
+            vistaFiveTime.visibility = View.VISIBLE
             }
 
 
