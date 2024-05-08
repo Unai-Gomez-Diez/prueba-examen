@@ -2,6 +2,7 @@ package com.ugdgomezdiez.firstopen.feature.data
 
 import android.util.Log
 import com.ugdgomezdiez.firstopen.feature.domain.FirstOpenRepository
+import com.ugdgomezdiez.firstopen.feature.domain.OpenModel
 
 class FirstOpenDataSource(
     private val firstOpenLocalDataSource: FirstOpenLocalDataSource
@@ -19,13 +20,22 @@ class FirstOpenDataSource(
         }
     }
 
-    override fun getFiveOpen(): Boolean {
+    override fun getFiveOpen(): OpenModel? {
         val value2 = firstOpenLocalDataSource.getFiveOpen()
-        return if(value2 < 5){
-            firstOpenLocalDataSource.setFiveOpen(value2)
-            return false
+        return if(value2 == null){
+            val open = OpenModel(
+                1, System.currentTimeMillis().toString()
+            )
+            firstOpenLocalDataSource.setFiveOpen(open)
+            null
+        }else if (value2.ejecute < 5){
+            val open = OpenModel(
+                value2.ejecute+1, System.currentTimeMillis().toString()
+            )
+            firstOpenLocalDataSource.setFiveOpen(open)
+            null
         }else{
-            return true
+            value2
         }
     }
 }

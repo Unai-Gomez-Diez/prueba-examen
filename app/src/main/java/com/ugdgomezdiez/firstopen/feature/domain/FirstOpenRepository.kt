@@ -2,5 +2,5 @@ package com.ugdgomezdiez.firstopen.feature.domain
 
 interface FirstOpenRepository {
     fun getFirstOpen(): Boolean
-    fun getFiveOpen(): Boolean
+    fun getFiveOpen(): OpenModel?
 }

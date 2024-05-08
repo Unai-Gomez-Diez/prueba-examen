@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         initAplication()
     }
     private fun initAplication(){
-        val firstOpenRepository = FirstOpenDataSource(FirstOpenXmlLocalDataSource(this))
+        val firstOpenRepository = FirstOpenDataSource(FirstOpenXmlLocalDataSource(this, GsonSerialization(Gson())))
         val prueba = firstOpenRepository.getFirstOpen()
         val prueba2 = firstOpenRepository.getFiveOpen()
 
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             vista.visibility = View.GONE
             vista2.visibility = View.VISIBLE
         }
-        if(prueba2 == true){
+        if(prueba2 != null){
             vistaFive.visibility = View.VISIBLE
             }
 
